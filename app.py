@@ -29,7 +29,7 @@ connection_values = [
 
 
 @app.route("/rec_creds", methods=["GET"])
-def handle_queries() -> str | None:
+def handle_queries() -> str | dict:
     if request.method == "GET":
         query = request.query_string.decode("utf-8")
         find_query = query.find("=")
@@ -88,7 +88,7 @@ def show_credentials(ssid) -> dict:
     return {request.args["show_credentials"]: get_credentials(ssid)}
 
 
-def delete_credentials(ssid):
+def delete_credentials(ssid) -> str:
     subprocess.run(
         [
             "nmcli",
@@ -102,7 +102,7 @@ def delete_credentials(ssid):
     return f"Deleted {ssid}"
 
 
-def parse_credentials(credentials, ingest):
+def parse_credentials(credentials, ingest) -> list:
     start = credentials.find(ingest)
     section = credentials[start:]
     end = section.find("\\")
