@@ -1,0 +1,1 @@
+send and received wifi credentials with flask
