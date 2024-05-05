@@ -39,6 +39,7 @@ subprocess.run(
     [
         "nmcli",
         "connection",
+        "modify",
         "Hotspot",
         "ipv4.addresses 192.168.6.9/24",
     ],
