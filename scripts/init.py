@@ -38,10 +38,26 @@ subprocess.run(
 subprocess.run(
     [
         "nmcli",
+        "networking",
+        "off",
+    ],
+    check=False,
+)
+subprocess.run(
+    [
+        "nmcli",
         "connection",
         "modify",
         "Hotspot",
         "ipv4.addresses 192.168.6.9/24",
+    ],
+    check=False,
+)
+subprocess.run(
+    [
+        "nmcli",
+        "networking",
+        "on",
     ],
     check=False,
 )

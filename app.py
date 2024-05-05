@@ -99,7 +99,6 @@ def delete_credentials(ssid) -> str:
         ],
         check=False,
     )
-    cycle_wifi()
     return f"Deleted {ssid}"
 
 
@@ -115,6 +114,7 @@ def parse_credentials(credentials, ingest) -> list:
 
 
 def enable_hotspot() -> None:
+    cycle_networking()
     subprocess.run(
         [
             "nmcli",
@@ -128,9 +128,9 @@ def enable_hotspot() -> None:
     )
 
 
-def cycle_wifi() -> None:
-    subprocess.run(["nmcli", "r", "wifi", "off"], check=False)
-    subprocess.run(["nmcli", "r", "wifi", "on"], check=False)
+def cycle_networking() -> None:
+    subprocess.run(["nmcli", "networking", "off"], check=False)
+    subprocess.run(["nmcli", "networking", "on"], check=False)
 
 
 def connect_wifi(ssid, password) -> bool:
