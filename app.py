@@ -117,7 +117,7 @@ def parse_credentials(credentials, ingest) -> list:
     return split
 
 
-def init_hotspot()) -> None:
+def init_hotspot() -> None:
     subprocess.run(
         [
             "nmcli",
@@ -164,10 +164,6 @@ def enable_hotspot() -> None:
         ],
         check=False,
     )
-
-
-def setup_hotspot() -> None:
-    subprocess.run(["sh", "./scripts/ap_setup.sh"], check=False)
 
 
 def cycle_wifi() -> None:
