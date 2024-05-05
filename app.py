@@ -8,9 +8,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-HOTSPOT_SSID = "Wipi"
-HOTSPOT_PASS = "testing247"
-
 valid_queries = ["show_connections", "show_credentials", "delete_credentials"]
 connection_values = [
     "id=",
