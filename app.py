@@ -117,41 +117,6 @@ def parse_credentials(credentials, ingest) -> list:
     return split
 
 
-def init_hotspot() -> None:
-    subprocess.run(
-        [
-            "nmcli",
-            "device",
-            "wifi",
-            "hotspot",
-            "ssid",
-            HOTSPOT_SSID,
-            "password",
-            HOTSPOT_PASS,
-            "ifname",
-            "wlan0",
-        ],
-        check=False,
-    )
-    cycle_wifi()
-    subprocess.run(
-        [
-            "nmcli",
-            "connection",
-            "Hotspot",
-            "ipv4.addresses 192.168.6.9/24",
-        ],
-        check=False,
-    )
-    subprocess.run(
-        [
-            "touch",
-            ".init",
-        ],
-        check=False,
-    )
-
-
 def enable_hotspot() -> None:
     subprocess.run(
         [
@@ -181,7 +146,5 @@ def connect_wifi(ssid, password) -> bool:
 
 
 if __name__ == "__main__":
-    if not os.path.isfile(".init"):
-        init_hotspot()
     enable_hotspot()
     app.run(debug=True, host="0.0.0.0", port=80)

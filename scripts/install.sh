@@ -13,9 +13,12 @@ rm -f /etc/NetworkManager/conf.d/iwd.conf && touch /etc/NetworkManager/conf.d/iw
 echo "[device]\nwifi.backend=iwd" | tee /etc/NetworkManager/conf.d/iwd.conf
 cd scripts
 touch wipi.service
+touch Hotspot.nmconnection
 python init.py
 rm -f /etc/systemd/system/wipi.service
+rm -f /etc/NetworkManager/system-connections/Hotspot*
 cp wipi.service /etc/systemd/system/
+mv Hotspot.nmconnection /etc/systemd/system-connections/Hotspot.nmconnection
 systemctl daemon-reload
 systemctl enable wipi.service && systemctl disable wpa_supplicant && systemctl enable iwd
 reboot & exit
