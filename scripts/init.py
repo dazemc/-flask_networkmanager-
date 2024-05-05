@@ -7,7 +7,7 @@ Description=Wipi Portal
 After=network.target
 [Service]
 WorkingDirectory={cwd}
-ExecStart={cwd}/scripts/startup.sh
+ExecStart={cwd}/startup.sh
 [Install]
 WantedBy=default.target
 """
