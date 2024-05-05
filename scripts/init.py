@@ -51,7 +51,8 @@ subprocess.run(
         "connection",
         "modify",
         "Hotspot",
-        "ipv4.addresses 192.168.6.9/24",
+        "ipv4.addresses",
+        "192.168.6.9/24",
     ],
     check=False,
 )
