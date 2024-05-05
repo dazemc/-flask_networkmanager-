@@ -14,7 +14,7 @@ After=network.target
 WorkingDirectory={cwd}
 ExecStart={cwd}/startup.sh
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
 """
 
 
