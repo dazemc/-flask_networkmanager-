@@ -8,4 +8,5 @@ echo "Creating python venv..."
 python3 -m venv .venv/
 echo "Installing python packages..."
 .venv/bin/pip install -r requirements.txt
+chmod +x scripts/*.sh
 exit
