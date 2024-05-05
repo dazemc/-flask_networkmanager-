@@ -1,11 +1,15 @@
 import subprocess
 import json
 import time
+import os
 from flask import Flask, request
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+
+HOTSPOT_SSID = "Wipi"
+HOTSPOT_PASS = os.environ.get("HOTSPOT_PASS")
 
 valid_queries = ["show_connections", "show_credentials", "delete_credentials"]
 connection_values = [
@@ -113,7 +117,7 @@ def parse_credentials(credentials, ingest) -> list:
     return split
 
 
-def enable_hotspot(ssid, password) -> None:
+def init_hotspot(ssid, password) -> None:
     subprocess.run(
         [
             "nmcli",
@@ -129,7 +133,28 @@ def enable_hotspot(ssid, password) -> None:
         ],
         check=False,
     )
+    subprocess.run(
+        [
+            "nmcli",
+            "connection",
+            "Hotspot",
+            "ipv4.addresses 192.168.6.9/24"
+            ],
+        check=False
+    )
 
+def enable_hotspot() -> None:
+    subprocess.run(
+        [
+            "nmcli",
+            "device",
+            "wifi",
+            "hotspot",
+            "con-name",
+            "Hotspot",
+        ],
+        check=False
+    )
 
 def setup_hotspot() -> None:
     subprocess.run(["sh", "./scripts/ap_setup.sh"], check=False)
