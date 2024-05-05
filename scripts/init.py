@@ -12,5 +12,5 @@ ExecStart={cwd}/startup.sh
 WantedBy=default.target
 """
 
-with open("wipi.service", "w", encoding="utf-8") as s_file:
+with open(f"{cwd}/wipi.service", "w", encoding="utf-8") as s_file:
     s_file.write(service)
