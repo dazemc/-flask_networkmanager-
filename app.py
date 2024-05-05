@@ -131,7 +131,7 @@ def enable_hotspot() -> None:
 def cycle_networking() -> None:
     subprocess.run(["nmcli", "networking", "off"], check=False)
     subprocess.run(["nmcli", "networking", "on"], check=False)
-
+    time.sleep(3)
 
 def connect_wifi(ssid, password) -> bool:
     check_wifi = subprocess.check_output(

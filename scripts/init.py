@@ -1,5 +1,6 @@
 import os
 import subprocess
+import time
 
 HOTSPOT_SSID = "Wipi"
 HOTSPOT_PASS = "testing247"
@@ -35,6 +36,7 @@ subprocess.run(
     ],
     check=False,
 )
+time.sleep(3)
 subprocess.run(
     [
         "nmcli",
