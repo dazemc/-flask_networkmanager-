@@ -59,6 +59,17 @@ subprocess.run(
 subprocess.run(
     [
         "nmcli",
+        "connection",
+        "modify",
+        "Hotspot",
+        "802-11-wireless-security.pmf",
+        "1",
+    ],
+    check=False,
+)
+subprocess.run(
+    [
+        "nmcli",
         "networking",
         "on",
     ],
