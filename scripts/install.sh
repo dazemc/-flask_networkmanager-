@@ -18,7 +18,7 @@ python init.py
 rm -f /etc/systemd/system/wipi.service
 rm -f /etc/NetworkManager/system-connections/Hotspot*
 mv wipi.service /etc/systemd/system/wipi.service
-mv Hotspot.nmconnection /etc/NetworkManger/system-connections/Hotspot.nmconnection
+mv Hotspot.nmconnection /etc/NetworkManager/system-connections/Hotspot.nmconnection
 systemctl daemon-reload
 systemctl enable wipi.service && systemctl disable wpa_supplicant && systemctl enable iwd
 reboot & exit
