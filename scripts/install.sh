@@ -15,5 +15,5 @@ rm -f /etc/NetworkManager/system-connections/Hotspot*
 touch wipi.service
 python init.py
 mv wipi.service /etc/systemd/system/wipi.service
-systemctl daemon-reload && systemctl enable wipi.service
-reboot & exit
+systemctl daemon-reload && systemctl enable wipi.service && systemctl start wipi.service
+exit
