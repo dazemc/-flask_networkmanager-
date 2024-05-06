@@ -50,7 +50,7 @@ def handle_queries() -> str | dict:
 def save_credentials() -> str | None:
     if request.method == "POST":
         r = json.loads(request.data)
-        cycle_wifi()
+        cycle_networking()
         time.sleep(3)
         if connect_wifi(r["SSID"], r["PASS"]):
             return "Connected"
