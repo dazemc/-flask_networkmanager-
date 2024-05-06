@@ -1,7 +1,7 @@
 #!/bin/bash
-apt update && apt install git -y
-git clone https://github.com/dazemc/flask_networkmanager.git
-mv flask_networkmanager wipi_portal
+wget https://github.com/dazemc/flask_networkmanager/archive/refs/heads/master.zip
+unzip master.zip
+mv flask_networkmanager-master wipi_portal
 cd wipi_portal
 mkdir .venv
 echo "Creating python venv..."
