@@ -152,7 +152,8 @@ def get_local_ip() -> str:
             "-I",
             "|",
             "awk",
-            "'{print $1}'",
+            "'{print"
+            "$1}'",
         ]
     )
     return addr
