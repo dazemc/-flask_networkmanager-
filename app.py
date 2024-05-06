@@ -53,7 +53,9 @@ def save_credentials() -> str | dict:
         time.sleep(3)
         if connect_wifi(r["SSID"], r["PASS"]):
             enable_hotspot()
-            return {"local_ip": get_local_ip()}
+            # will not be able to return because wifi connection gets lost, will send it with credentials instead
+            # return {"local_ip": get_local_ip()}
+            return "Connected"
         return "Error connecting"
 
 
@@ -81,6 +83,7 @@ def get_credentials(ssid) -> dict:
         creds_parsed = {}
         for v in connection_values:
             creds_parsed[v[:-1]] = parse_credentials(credentials, v)[1]
+        creds_parsed["local-ip"] = get_local_ip()
         return creds_parsed
     return f"SSID: {ssid}\nNot in saved connections."
 
