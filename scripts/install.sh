@@ -1,5 +1,5 @@
 #!/bin/bash
-rm -f master.zip && rm -rf wipi_portal
+rm -f master.zip && rm -rf wipi_portal && rm -rf flask_networkmanager-master
 wget https://github.com/dazemc/flask_networkmanager/archive/refs/heads/master.zip
 unzip master.zip
 mv flask_networkmanager-master wipi_portal
