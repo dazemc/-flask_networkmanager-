@@ -50,9 +50,9 @@ def handle_queries() -> str | dict:
 def save_credentials() -> str | None:
     if request.method == "POST":
         r = json.loads(request.data)
-        cycle_networking()
         time.sleep(3)
         if connect_wifi(r["SSID"], r["PASS"]):
+            enable_hotspot()
             return "Connected"
         return "Error connecting"
 
@@ -118,10 +118,8 @@ def enable_hotspot() -> None:
     subprocess.run(
         [
             "nmcli",
-            "device",
-            "wifi",
-            "hotspot",
-            "con-name",
+            "c",
+            "up",
             "Hotspot",
         ],
         check=False,
@@ -129,11 +127,12 @@ def enable_hotspot() -> None:
 
 
 def cycle_networking() -> None:
-    subprocess.run(["nmcli", "networking", "off"], check=False)
-    subprocess.run(["nmcli", "networking", "on"], check=False)
-    time.sleep(3)
+    subprocess.run(["nmcli", "r", "wifi", "off"], check=False)
+    subprocess.run(["nmcli", "r", "wifi", "on"], check=False)
+    time.sleep(1)
 
 def connect_wifi(ssid, password) -> bool:
+    cycle_networking()
     check_wifi = subprocess.check_output(
         ["nmcli", "device", "wifi", "connect", ssid, "password", password]
     )
