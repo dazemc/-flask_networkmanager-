@@ -40,8 +40,9 @@ time.sleep(3)
 subprocess.run(
     [
         "nmcli",
-        "networking",
-        "off",
+        "r",
+        "wifi",
+        "on"
     ],
     check=False,
 )
@@ -70,8 +71,9 @@ subprocess.run(
 subprocess.run(
     [
         "nmcli",
-        "networking",
-        "on",
+        "r",
+        "wifi",
+        "on"
     ],
     check=False,
 )
