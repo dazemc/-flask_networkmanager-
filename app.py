@@ -148,12 +148,8 @@ def connect_wifi(ssid, password) -> bool:
 def get_local_ip() -> str:
     addr = subprocess.check_output(
         [
-            "hostname",
-            "-I",
-            "|",
-            "awk",
-            "'{print"
-            "$1}'",
+            "sh",
+            "/scripts/get_ip.sh"
         ]
     )
     return addr
