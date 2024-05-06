@@ -8,7 +8,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-hotspot_ip = "192.168.6.9"
+DEBUG_HOTSPOT = False
+HOTSPOT_IP = "192.168.6.9"
+
 valid_queries = ["show_connections", "show_credentials", "delete_credentials"]
 connection_values = [
     "id=",
@@ -53,7 +55,8 @@ def save_credentials() -> str | dict:
         r = json.loads(request.data)
         time.sleep(3)
         if connect_wifi(r["SSID"], r["PASS"]):
-            enable_hotspot()
+            if DEBUG_HOTSPOT:
+                enable_hotspot()
             # will not be able to return because wifi connection gets lost, will send it with credentials instead
             # return {"local_ip": get_local_ip()}
             return "Connected"
@@ -85,7 +88,7 @@ def get_credentials(ssid) -> dict:
         for v in connection_values:
             creds_parsed[v[:-1]] = parse_credentials(credentials, v)[1]
         if ssid == "Hotspot":
-            creds_parsed["local-ip"] = hotspot_ip
+            creds_parsed["local-ip"] = HOTSPOT_IP
         creds_parsed["local-ip"] = get_local_ip()
         return creds_parsed
     return f"SSID: {ssid}\nNot in saved connections."
