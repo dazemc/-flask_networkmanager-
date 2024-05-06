@@ -68,12 +68,3 @@ subprocess.run(
     ],
     check=False,
 )
-subprocess.run(
-    [
-        "nmcli",
-        "c",
-        "up",
-        "Hotspot"
-    ],
-    check=False,
-)
