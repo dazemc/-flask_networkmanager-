@@ -47,13 +47,13 @@ def handle_queries() -> str | dict:
 
 
 @app.route("/send_creds", methods=["POST"])
-def save_credentials() -> str | None:
+def save_credentials() -> str | dict:
     if request.method == "POST":
         r = json.loads(request.data)
         time.sleep(3)
         if connect_wifi(r["SSID"], r["PASS"]):
             enable_hotspot()
-            return "Connected"
+            return {"local_ip": get_local_ip()}
         return "Error connecting"
 
 
@@ -131,6 +131,7 @@ def cycle_networking() -> None:
     subprocess.run(["nmcli", "r", "wifi", "on"], check=False)
     time.sleep(1)
 
+
 def connect_wifi(ssid, password) -> bool:
     cycle_networking()
     check_wifi = subprocess.check_output(
@@ -140,6 +141,18 @@ def connect_wifi(ssid, password) -> bool:
         return True
     return False
 
+
+def get_local_ip() -> str:
+    addr = subprocess.check_output(
+        [
+            "hostname",
+            "-I",
+            "|",
+            "awk",
+            "'{print $1}'",
+        ]
+    )
+    return addr
 
 if __name__ == "__main__":
     enable_hotspot()
