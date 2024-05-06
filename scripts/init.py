@@ -3,7 +3,7 @@ import subprocess
 import time
 
 HOTSPOT_SSID = "Wipi"
-HOTSPOT_PASS = "None"
+HOTSPOT_PASS = "__None__"
 
 cwd = os.getcwd()
 service = f"""
