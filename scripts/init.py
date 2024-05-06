@@ -62,8 +62,8 @@ subprocess.run(
         "connection",
         "modify",
         "Hotspot",
-        "802-11-wireless-security.pmf",
-        "1",
+        "802-11-wireless-security.key-mgmt",
+        "owe",
     ],
     check=False,
 )
