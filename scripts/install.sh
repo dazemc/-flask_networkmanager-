@@ -17,4 +17,4 @@ touch wipi.service
 python init.py
 mv wipi.service /etc/systemd/system/wipi.service
 systemctl daemon-reload && systemctl enable wipi.service && systemctl start wipi.service
-exit
+reboot & exit
