@@ -8,6 +8,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+hotspot_ip = "192.168.6.9"
 valid_queries = ["show_connections", "show_credentials", "delete_credentials"]
 connection_values = [
     "id=",
@@ -83,6 +84,8 @@ def get_credentials(ssid) -> dict:
         creds_parsed = {}
         for v in connection_values:
             creds_parsed[v[:-1]] = parse_credentials(credentials, v)[1]
+        if ssid == "Hotspot":
+            creds_parsed["local-ip"] = hotspot_ip
         creds_parsed["local-ip"] = get_local_ip()
         return creds_parsed
     return f"SSID: {ssid}\nNot in saved connections."
@@ -152,7 +155,7 @@ def get_local_ip() -> str:
             "/scripts/get_ip.sh"
         ]
     )
-    return addr
+    return addr.decode("utf-8")
 
 if __name__ == "__main__":
     enable_hotspot()
