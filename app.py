@@ -1,7 +1,6 @@
 import subprocess
 import json
 import time
-import os
 from flask import Flask, request
 from flask_cors import CORS
 
@@ -47,10 +46,11 @@ def handle_queries() -> str | dict:
             if query == "delete_credentials":
                 return delete_credentials(request.args["delete_credentials"])
         return f"QUERY: {query}\nNot a valid query."
+    return "Not a GET method"
 
 
 @app.route("/send_creds", methods=["POST"])
-def save_credentials() -> str | dict:
+def save_credentials() -> str:
     if request.method == "POST":
         r = json.loads(request.data)
         time.sleep(3)
@@ -61,6 +61,7 @@ def save_credentials() -> str | dict:
             # return {"local_ip": get_local_ip()}
             return "Connected"
         return "Error connecting"
+    return "Not a POST method"
 
 
 def show_connections() -> dict:
@@ -76,7 +77,7 @@ def get_connections() -> list:
     return [v.replace(".nmconnection", "") for v in conns]
 
 
-def get_credentials(ssid) -> dict:
+def get_credentials(ssid) -> dict | str:
     saved_connections = get_connections()
     if ssid in saved_connections:
         credentials = str(
