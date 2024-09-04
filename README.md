@@ -1,6 +1,6 @@
 install;
 
-```sudo wget -O - https://raw.githubusercontent.com/dazemc/flask_networkmanager/master/scripts/install.sh | bash```
+```wget -O https://raw.githubusercontent.com/dazemc/flask_networkmanager/master/scripts/install.sh && sudo chmod +x install.sh && sudo sh install.sh```
 
 
 send and receive wifi credentials with flask,
