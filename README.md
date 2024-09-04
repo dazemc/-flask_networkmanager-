@@ -1,4 +1,5 @@
 install;
+
 ```sudo wget -O - https://raw.githubusercontent.com/dazemc/flask_networkmanager/master/scripts/install.sh | bash```
 
 
