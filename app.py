@@ -156,7 +156,7 @@ def get_local_ip() -> str:
     addr = subprocess.check_output(
         [
             "sh",
-            "/scripts/get_ip.sh"
+            "./scripts/get_ip.sh"
         ]
     )
     return addr.decode("utf-8")
